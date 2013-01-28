@@ -71,7 +71,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
-a    </dependency>
+    </dependency>
     <dependency>
       <groupId>jgroups</groupId>
       <artifactId>jgroups-all</artifactId>
@@ -82,7 +82,11 @@ a    </dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>13.0.1</version>
+    </dependency>
 
 
   </dependencies>
