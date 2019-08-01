@@ -1,11 +1,19 @@
 package org.mmbase.clustering.unicast;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.mmbase.clustering.Statistics;
-import org.mmbase.util.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.*;
-import java.net.*;
-import java.io.*;
-import org.junit.*;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class UnicastTest {
 
@@ -50,7 +58,7 @@ public class UnicastTest {
         // Read the byte array in again
         LinkedList<byte[]> queue = new LinkedList<byte[]>();
         InputStream in = new ByteArrayInputStream(buffer.toByteArray());
-        receiver.readStreamVersion2(in, queue);
+        receiver.readStreamVersion2(in);
 
         // And check if the result is the same as what went in
 
@@ -83,7 +91,7 @@ public class UnicastTest {
                         synchronized(state) {
                             Socket socket = serverSocket.accept();
                             System.out.println("Received connection " + socket);
-                            receiver.readStreamVersion2(socket.getInputStream(), queue);
+                            receiver.readStreamVersion2(socket.getInputStream());
                             System.out.println("Ready reading " + queue.size());
                             state.add(1);
                             state.notifyAll();
